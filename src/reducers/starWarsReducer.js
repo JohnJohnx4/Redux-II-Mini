@@ -3,20 +3,21 @@ const initialState = {
   chars: [],
   fetching: false,
   fetched: false,
-  error: null
+  error: ""
   // define a few properties here.
   // Array chars, String fetching, String fetched, null error.
 };
-export const charsReducer = (state = initialState, action) => {
+export const chars = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_CHARS:
       return {...state, fetching: true}; 
     case CHARS_RECEIVED: 
+      console.log("ACTION PAYLOAD", action.payload);
       return {
         ...state,
         fetched: true,
         fetching: false,
-        chars: Object.keys(action.payload)
+        chars: action.payload
       };
     case ERROR_FETCHING_CHARS:
       return{...state, fetching: false, error: action.payload};

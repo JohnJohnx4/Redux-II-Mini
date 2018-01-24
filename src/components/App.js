@@ -9,17 +9,15 @@ class App extends Component {
     this.props.getChars();
   }
   render() {
-    console.log(this.props);
-    const { char } = this.props;
     return (
       <div className="App">
         {this.props.fetching ? (
           <img src={logo} className="App-logo" alt="logo" />
         ) : (
           <ul>
-            {this.props.chars.map(char => {
-              return <li key={char.name}>{char.name}</li>;
-            })}
+          {this.props.chars.map(char => {
+            return <li key={char.name}>{char.name}</li>;
+          })}
           </ul>
         )}
       </div>
@@ -28,6 +26,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log("STATE IS: ",state);
   return {
     chars: state.chars,
     fetching: state.fetching,
@@ -35,4 +34,5 @@ const mapStateToProps = state => {
   };
 };
 
+console.log("THE PROPS: ",this.props);
 export default connect(mapStateToProps, { getChars })(App);
