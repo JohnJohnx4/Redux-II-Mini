@@ -4,10 +4,8 @@ const initialState = {
   fetching: false,
   fetched: false,
   error: ""
-  // define a few properties here.
-  // Array chars, String fetching, String fetched, null error.
 };
-export const chars = (state = initialState, action) => {
+export const charsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_CHARS:
       return {...state, fetching: true}; 

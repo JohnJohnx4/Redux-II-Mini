@@ -6,8 +6,10 @@ import { getChars } from '../actions';
 
 class App extends Component {
   componentDidMount() {
+    console.log("THE PROPS: ",this.props);
     this.props.getChars();
   }
+
   render() {
     return (
       <div className="App">
@@ -15,9 +17,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         ) : (
           <ul>
-          {this.props.chars.map(char => {
-            return <li key={char.name}>{char.name}</li>;
-          })}
+            {this.props.chars.map(char => {
+              return <li key={char.name}>{char.name}</li>;
+            })}
           </ul>
         )}
       </div>
@@ -26,13 +28,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("STATE IS: ",state);
+  console.log("STATE IS: ", state);
   return {
-    chars: state.chars,
-    fetching: state.fetching,
-    error: state.error
+    chars: state.charsReducer.chars,
+    fetching: state.charsReducer.fetching,
+    error: state.charsReducer.error
+
   };
 };
 
-console.log("THE PROPS: ",this.props);
-export default connect(mapStateToProps, { getChars })(App);
+export default connect(mapStateToProps, {getChars})(App);

@@ -6,15 +6,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import logger from 'redux-logger';
-// import { combineReducers } from 'redux';
-// cannot get combine reducers to work. it alters the state so that when App.js tries to render, the state doesnt have any of the props yet
-import { chars } from './reducers/starWarsReducer';
+import rootReducer from './reducers';
 
-const store = createStore(
-  // combineReducers,
-  chars,
-   applyMiddleware(thunk, logger)
-);
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <Provider store={store}>
